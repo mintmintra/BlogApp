@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addcategory</title>
+</head>
+<body>
+    <%- include('layout'); -%>
+    <div class="container">
+        <h2 class="my-4" align="center">เพิ่มประเภทบทความ</h2>
+        <form class="" action="/category/add" method="post">
+            <div class="form-group">
+                <label for="">ชื่อประเภท</label>
+                <input type="text" name="name" value="" class="form-control">
+            </div>
+            <input type="submit" name="" value="บันทึกข้อมูล" class="my-3 btn btn-primary" >
+        </form>
+    </div>
+</body>
+</html>

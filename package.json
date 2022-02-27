@@ -1,0 +1,21 @@
+{
+  "name": "nodeblogapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "*",
+    "express": "~4.16.1",
+    "express-validator": "*",
+    "http-errors": "~1.6.3",
+    "moment": "*",
+    "mongodb": "^4.4.0",
+    "mongoose": "^6.2.3",
+    "monk": "*",
+    "morgan": "~1.9.1"
+  }
+}
