@@ -10,6 +10,13 @@
     <%- include('layout'); -%>
     <div class="container">
         <h2 class="my-4" align="center">เพิ่มประเภทบทความ</h2>
+        <% if(locals.errors){ %>
+            <ul class="alert alert-danger" role="alert">
+                <% Object.values(errors).forEach(function(error){ %>
+                    <li><%= error.msg %></li>
+               <% }) %>
+            </ul>
+    <% } %>
         <form class="" action="/category/add" method="post">
             <div class="form-group">
                 <label for="">ชื่อประเภท</label>
