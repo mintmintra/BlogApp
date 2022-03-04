@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
 
 var { check, validationResult } = require('express-validator');
 
@@ -14,13 +15,29 @@ router.get('/', function(req, res, next) {
   blogs.find({}, {}, function (err, blog) {
     categories.find({}, {}, function (err, category) {
     res.render('index', {
-      posts: blog, categories:category
+      posts: blog,
+      categories: category,
+      moment:moment
     });
   });
   });
   
 });
 
+router.get('/show/:id', function(req, res, next) {
+  var blogs = db.get('posts')
+  var categories = db.get('categories')
+  blogs.find(req.params.id, {}, function (err, blog) {
+    categories.find({}, {}, function (err, category) {
+    res.render('show', {
+      posts: blog,
+      categories: category,
+      moment:moment
+    });
+  });
+  });
+  
+});
 
 
 router.get('/category/add', function(req, res, next) {
@@ -44,12 +61,33 @@ router.post('/post/add', [
 ], function (req, res, next) {
   var result = validationResult(req);
   var errors = result.errors;
+  var categories = db.get('categories');
+  var posts = db.get('posts');
+
   if (!result.isEmpty()) {
+    categories.find({}, {}, function (err, category) {
     res.render('addpost', {
+      categories: category,
       errors: errors
     });
+   });
   } else {
-
+    //Insert Post
+    posts.insert({
+      title: req.body.title,
+      category: req.body.category,
+      content: req.body.content,
+      img: req.body.img,
+      author: req.body.author,
+      date: new Date()
+    }, function (err, success) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.location('/');
+        res.redirect('/');
+      }
+    })
   }
 });
 
