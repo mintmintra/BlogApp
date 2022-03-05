@@ -39,6 +39,52 @@ router.get('/show/:id', function(req, res, next) {
   
 });
 
+router.get('/posts/show/', function(req, res, next) {
+  var blogs = db.get('posts');
+  var categories = db.get('categories');
+  var name = req.query.category; //ไปดึงค่าจาก query string category
+  var author = req.query.author;
+  var title = req.query.title;
+  if (name) {
+    blogs.find({category: name}, {}, function (err, blog) {
+    categories.find({}, {}, function (err, category) {
+    res.render('show_search', {
+      posts: blog,
+      categories: category,
+      moment: moment,
+      search: name
+    });
+  });
+  });
+  }
+  if (author) {
+    blogs.find({author: author}, {}, function (err, blog) {
+    categories.find({}, {}, function (err, category) {
+    res.render('show_search', {
+      posts: blog,
+      categories: category,
+      moment: moment,
+      search: author
+    });
+  });
+  });
+  }
+
+  if (title) {
+    blogs.find({title: title}, {}, function (err, blog) {
+    categories.find({}, {}, function (err, category) {
+    res.render('show_search', {
+      posts: blog,
+      categories: category,
+      moment: moment,
+      search: title
+    });
+  });
+  });
+  }
+  
+});
+
 
 router.get('/category/add', function(req, res, next) {
   res.render('addcategory');

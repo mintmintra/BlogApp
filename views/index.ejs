@@ -17,7 +17,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
   
-          <h1 class="my-4">บทความ</h1>
+          <h3 class="my-4">บทความทั้งหมด</h3>
   
           <!-- Blog Post -->
           <% posts.forEach(function(post) { %>
@@ -32,7 +32,7 @@
               </div>
               <div class="card-footer text-muted">
                 Posted on <%= moment(post.date).format("DD-MM-YYYY") %> by
-                <a href="#"><%= post.author %></a>, <a href="#"><%= post.category %></a>
+                <a href="/posts/show/?author=<%=post.author %>" class="text-decoration-none"><%= post.author %></a>, <a href="/posts/show/?category=<%=post.category %>" class="text-decoration-none"><%=post.category %></a>
               </div>
             </div>
               <%})%>
